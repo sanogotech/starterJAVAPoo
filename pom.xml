@@ -1,44 +1,53 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   
   
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.macrosoft</groupId>
-  <artifactId>starterjavapoo</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
-	<properties>
+  <!-- Informations générales sur le projet -->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.macrosoft</groupId> <!-- Identifiant du groupe (organisation) -->
+    <artifactId>starterjavapoo</artifactId> <!-- Nom du projet -->
+    <version>0.0.1-SNAPSHOT</version> <!-- Version du projet -->
+
+    <!-- Propriétés pour spécifier la version source et la version cible du compilateur Java -->
+    <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <build>
         <plugins>
-            <!-- Plugin pour créer un JAR exécutable -->
+            <!-- Plugin pour créer un JAR exécutable avec les dépendances incluses -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>com.votrepackage.Main</mainClass> <!-- Spécifiez votre classe principale ici -->
-                        </manifest>
-                    </archive>
-                </configuration>
+                <artifactId>maven-shade-plugin</artifactId> <!-- Plugin Maven Shade -->
+                <version>3.2.4</version> <!-- Version du plugin Shade -->
+                <executions>
+                    <execution>
+                        <phase>package</phase> <!-- Phase Maven à laquelle le plugin sera exécuté -->
+                        <goals>
+                            <goal>shade</goal> <!-- Objectif du plugin : créer un JAR exécutable -->
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.macrosoft.starterjavapoo.ProgrammeMain</mainClass> <!-- Classe principale du JAR -->
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Plugin pour exécuter les tests JUnit 5 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version> <!-- Utilisez la dernière version de Surefire -->
+                <artifactId>maven-surefire-plugin</artifactId> <!-- Plugin Maven Surefire -->
+                <version>3.0.0-M5</version> <!-- Version du plugin Surefire -->
                 <dependencies>
-                    <!-- Utilisez le provider JUnit 5 pour exécuter les tests JUnit 5 -->
+                    <!-- Dépendance pour exécuter les tests JUnit 5 -->
                     <dependency>
                         <groupId>org.junit.jupiter</groupId>
                         <artifactId>junit-jupiter-engine</artifactId>
-                        <version>5.8.1</version> <!-- Utilisez la dernière version de JUnit 5 -->
+                        <version>5.8.1</version> <!-- Version de JUnit 5 -->
                     </dependency>
                 </dependencies>
             </plugin>
@@ -46,34 +55,31 @@
     </build>
 
     <dependencies>
-        <!-- Log4j for logging -->
+        <!-- Log4j pour la journalisation -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.14.1</version>
+            <version>2.14.1</version> <!-- Version de Log4j -->
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.14.1</version>
+            <version>2.14.1</version> <!-- Version de Log4j -->
         </dependency>
 
-        <!-- JUnit 5 for unit testing -->
+        <!-- JUnit 5 pour les tests unitaires -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.8.1</version>
-            <scope>test</scope>
+            <version>5.8.1</version> <!-- Version de JUnit 5 -->
+            <scope>test</scope> <!-- Utilisé uniquement pour les tests -->
         </dependency>
-        
-        
+
+        <!-- Jsoup pour l'analyse HTML -->
         <dependency>
-		    <groupId>org.jsoup</groupId>
-		    <artifactId>jsoup</artifactId>
-		    <version>1.14.3</version>
-		</dependency>
-        
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.14.3</version> <!-- Version de Jsoup -->
+        </dependency>
     </dependencies>
-  
-  
 </project>
