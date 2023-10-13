@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <!-- Rotation quotidienne des logs -->
+        <RollingFile name="RollingFile" fileName="logs/monecole.log"
+                     filePattern="logs/monecole-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="%d %-5p [%c{1.}] %m%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy size="100 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+
+        <!-- Affichage des logs dans la console -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %-5p [%c{1.}] %m%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!-- Configuration du niveau de log pour différentes classes ou packages -->
+        <Root level="info">
+            <AppenderRef ref="RollingFile" />
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>

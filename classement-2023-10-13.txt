@@ -1,0 +1,3 @@
+Classement des élèves :
+Eleve2 - Moyenne : 13.75
+Eleve1 - Moyenne : 10.75
