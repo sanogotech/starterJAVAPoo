@@ -111,7 +111,7 @@ Dans ce fichier pom.xml :
 <dependencies> : Cette section contient les dépendances du projet. Les bibliothèques Log4j, JUnit 5 et Jsoup sont spécifiées ici. Maven se charge de télécharger ces bibliothèques et de les inclure dans le projet lors de la construction.
 
 Chaque balise et élément dans ce fichier pom.xml est essentiel pour configurer votre projet Maven, du compilateur Java aux dépendances en passant par les plugins pour l'emballage et les tests. Assurez-vous que ces configurations correspondent à vos besoins spécifiques et à la structure de votre projet.
-
+ 
 
 ## Compilation du Projet
 
